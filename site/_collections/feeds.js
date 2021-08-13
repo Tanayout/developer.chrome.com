@@ -16,7 +16,7 @@
 
 const {defaultLocale} = require('../_data/site.json');
 const {i18n} = require('../_filters/i18n');
-const {filterDrafts} = require('../_utils/drafts');
+const {filterOutDrafts} = require('../_utils/drafts');
 
 /**
  * Create additional feeds for these specific tags (in addition to the blog/all).
@@ -38,7 +38,7 @@ module.exports = collection => {
   const posts = collection
     .getAllSorted()
     .reverse()
-    .filter(i => i.data.locale === defaultLocale && filterDrafts(i));
+    .filter(i => i.data.locale === defaultLocale && filterOutDrafts(i));
   /** @type FeedsCollection */
   const feeds = {};
   const blog = [];
